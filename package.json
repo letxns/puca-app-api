@@ -3,8 +3,6 @@
   "version": "0.0.1",
   "description": "CRUD APP",
   "author": "Leticia Martins",
-  "private": false,
-  "license": "UNLICENSED",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
