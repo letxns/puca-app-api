@@ -16,7 +16,7 @@ import { FormModule } from './form/form.module';
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DATABASE,
       autoLoadEntities: true,
-      synchronize: true,
+      // synchronize: true,
     }),
     FormModule,
   ],
