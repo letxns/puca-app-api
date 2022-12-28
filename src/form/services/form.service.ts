@@ -19,14 +19,10 @@ export class FormService {
     findAllPosts() {
         return from(this.formPostRepository.find())
     }
-
-    // *****************************************************************************
-    // implementar get por id
-    // 
-
-    // findOnePost(id: number) {
-    //     return from(this.formPostRepository.findByIds(id))
-    // }
+    
+    findOnePost(id) {
+        return from(this.formPostRepository.findByIds(id))
+    }
 
     updatePost(id: number, formPost: FormPost): Observable<UpdateResult> {
         return from(this.formPostRepository.update(id, formPost))

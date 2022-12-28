@@ -19,12 +19,10 @@ export class FormController {
         return this.formService.findAllPosts();
     } 
 
-        //*********************** */
-        //implementar getbyid
-    // @Get(':id')
-    // findOne(@Param('id') id: number){
-    //     return this.formService.findOnePost(id);
-    // }
+    @Get(':id')
+    findOne(@Param('id') id: number){
+        return this.formService.findOnePost(id);
+    }
 
     @Put(':id')
     update(
