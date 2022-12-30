@@ -8,6 +8,11 @@ os atributos definidos na página de configuração. A resposta esperada pela ap
   "document.json"
 ]
 
+o nome do arquivo seria único e serviria como identificador para posteriormente acessar e manipular os dados
+
+
+Acabei entendendo a proposta de outra forma no início e não consegui reestruturar a aplicação a tempo
+
  -->
 
 <div align='center'>
