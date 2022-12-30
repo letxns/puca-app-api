@@ -1,27 +1,55 @@
-import { Controller, Delete, Get, Post, Put } from '@nestjs/common';
+import { Controller, Delete, Get, HttpException, HttpStatus, Post, Put } from '@nestjs/common';
 import { Body, Param } from '@nestjs/common/decorators';
 import { Observable } from 'rxjs';
-import { FormPost } from '../models/post.interface';
+import { FormPost } from "../models/post.interface";
 import { FormService } from '../services/form.service';
 import { DeleteResult, UpdateResult } from 'typeorm';
-
 @Controller('form')
 export class FormController {
     constructor(private formService: FormService) {}
 
     @Post()
     create(@Body() formPost: FormPost): Observable<FormPost> {
-        return this.formService.createPost(formPost);
+        try {
+            return this.formService.createPost(formPost)
+        } catch (error) {
+            throw new HttpException({
+                status: HttpStatus.BAD_REQUEST,
+                error: 'erro :(',
+            }, HttpStatus.BAD_REQUEST, {
+                cause: error
+            });
+        }
+        
     }
     
     @Get()
     findAll(): Observable<FormPost[]>{
-        return this.formService.findAllPosts();
+        try {
+            return this.formService.findAllPosts();          
+        } catch (error) {
+            throw new HttpException({
+                status: HttpStatus.NOT_FOUND,
+                error: 'erro :(',
+            }, HttpStatus.NOT_FOUND, {
+                cause: error
+            });
+        }
     } 
 
     @Get(':id')
     findOne(@Param('id') id: number){
-        return this.formService.findOnePost(id);
+        try {
+            return this.formService.findOnePost(id);
+        } catch (error) {
+            throw new HttpException({
+                status: HttpStatus.NOT_FOUND,
+                error: 'erro :(',
+            }, HttpStatus.NOT_FOUND, {
+                cause: error
+            });
+        }
+        
     }
 
     @Put(':id')
@@ -29,7 +57,17 @@ export class FormController {
         @Param('id') id: number,
         @Body() formPost: FormPost
     ): Observable<UpdateResult> {
-        return this.formService.updatePost(id, formPost);
+        try {
+            return this.formService.updatePost(id, formPost);
+        } catch (error) {
+            throw new HttpException({
+                status: HttpStatus.BAD_REQUEST,
+                error: 'erro. confira os dados',
+            }, HttpStatus.BAD_REQUEST, {
+                cause: error
+            });
+        }
+        
     }
 
     @Delete(':id')

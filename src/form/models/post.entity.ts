@@ -1,5 +1,4 @@
 import { IsNotEmpty } from 'class-validator';
-// import { Length } from 'class-validator/types/decorator/decorators';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('form_post')
@@ -13,12 +12,10 @@ export class FormPostEntity{
     id: number;
 
     @IsNotEmpty()
-    // @Length( 5, 15 )
     @Column()
     codproduto: number;
 
     @IsNotEmpty()
-    // @Length( 1, 100 )
     @Column()
     descricao: string;
 
